@@ -13,26 +13,36 @@ export const usePokemons = ({ initialState = [], intersectionObserver, nextRoute
         return 'https://pokeapi.co/api/v2/pokemon?limit=50?offset=0'
     })
 
-    const getPokemonsFromApi = () => {
-        setLoading(true)
-        getPokemons( {url: route} )
-            .then(pokemons => {
-                setPokemons((prev) => [...prev, ...pokemons.results])
-                setRoute(pokemons.next)
-                setLoading(false)
-            })
-            .catch(err => {
-                setError(err)
-                setLoading(false)
-            })
-    }
+    // const getPokemonsFromApi = () => {
+    //     setLoading(true)
+    //     getPokemons( {url: route} )
+    //         .then(pokemons => {
+    //             setPokemons((prev) => [...prev, ...pokemons.results])
+    //             setRoute(pokemons.next)
+    //             setLoading(false)
+    //         })
+    //         .catch(err => {
+    //             setError(err)
+    //             setLoading(false)
+    //         })
+    // }
 
     useEffect(() => {
         if (intersectionObserver) {
-            getPokemonsFromApi()
+            setLoading(true)
+            getPokemons( {url: route} )
+                .then(pokemons => {
+                    setPokemons((prev) => [...prev, ...pokemons.results])
+                    setRoute(pokemons.next)
+                    setLoading(false)
+                })
+                .catch(err => {
+                    setError(err)
+                    setLoading(false)
+                })
         }
 
-    }, [ intersectionObserver ])
+    }, [intersectionObserver, route ])
 
     return { pokemons, loading, error}
 }
