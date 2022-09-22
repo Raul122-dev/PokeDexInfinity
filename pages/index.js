@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import ListPokemons from '../components/ListPokemons'
 import { getPokemons } from '../services/poke_api'
-import { usePokemons } from '../hooks/usePokemons'
+import { usePokemons } from '../Hooks/usePokemons'
 import { useRef } from 'react'
-import { useIntersectedView } from '../hooks/useIntersectorView'
+import { useIntersectedView } from '../Hooks/useIntersectorView'
 // import styles from '../styles/Home.module.css'
 
 //#1B2631
